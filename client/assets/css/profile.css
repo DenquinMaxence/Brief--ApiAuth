@@ -18,6 +18,8 @@
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 	border-radius: 5%;
+    width: 256px;
+    height: 256px;
 }
 
 .profile-info {
