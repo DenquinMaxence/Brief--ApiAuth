@@ -1,8 +1,9 @@
 // On importe la bibliothèque (package) mongoose
-import { Schema, model } from 'mongoose';
+import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
 
 // UserSchema représente le squelette du document utilisateur dans la base de données
-const userSchema = new Schema(
+const userSchema = new mongoose.Schema(
 	{
 		name: {
 			type: String,
@@ -31,5 +32,26 @@ const userSchema = new Schema(
 	}
 );
 
+//pre hook
+userSchema.pre('save', async function (next) {
+	//means : avant de save, fais cette fonction
+	const user = this;
+	const hash = await bcrypt.hash(user.password, 10);
+
+	user.password = hash;
+
+	next();
+});
+
+//Ajouter une méthode pour vérifier le password
+userSchema.methods.isValidPassword = async function (password) {
+	//methode means : ajouter une méthode (valide password)
+	const user = this;
+	const isMatch = await bcrypt.compare(password, user.password);
+
+	return isMatch;
+};
+
 // Permet d'exporter le modèle User afin de pouvoir y accèdez dans les autres fichiers
-export default model('User', userSchema);
+
+export default mongoose.model('User', userSchema);

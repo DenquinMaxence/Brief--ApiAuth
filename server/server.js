@@ -1,10 +1,15 @@
 // On importe la bibliothèque dotenv afin de charger les variables d'environnement
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 import express from 'express';
 const app = express();
-import connectDB from './config/db';
-import userRoutes from './routes/userRoutes';
+
+import connectDB from './config/db.js';
+import userRoutes from './routes/userRoutes.js';
+
+import './middleware/auth.js';
+import passport from 'passport';
 
 const appPort = process.env.APP_PORT || 3500;
 
@@ -21,6 +26,9 @@ const start = async () => {
 
 // On démarre l'application NodeJs avec le port 3500
 start();
+
+//middlewares
+app.use(express.json());
 
 // Routes
 // On définit les routes de l'application
