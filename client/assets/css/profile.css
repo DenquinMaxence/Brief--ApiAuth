@@ -1,0 +1,65 @@
+.profile-container {
+	width: 100%;
+	height: 70%;
+	display: flex;
+	padding: 0.5rem;
+	justify-content: center;
+	align-items: center;
+}
+
+.profile-avatar {
+	width: 60%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-direction: column;
+}
+.profile-avatar img {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	border-radius: 5%;
+}
+
+.profile-info {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+.icon {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    cursor: pointer;
+}
+
+.fa-edit {
+	color: #3991a5;
+}
+
+.button-container {
+	width: 100%;
+	height: 25%;
+	display: flex;
+	padding: 0.5rem;
+	flex-direction: wrap;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.btn-danger {
+	border: 1px solid #a53939;
+	background-color: #a53939;
+}
+
+.label-file {
+	cursor: pointer;
+	color: #3991a5;
+	font-weight: bold;
+}
+
+.input-file {
+	display: none;
+}
