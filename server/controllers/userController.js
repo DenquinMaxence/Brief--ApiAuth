@@ -1,10 +1,21 @@
 // On importe le userModel afin de pouvoir communiqué avec le document User dans la base de données
-import { find } from '../models/userModel';
+import userModel from '../models/userModel.js';
 
 // Export du module userController et ses fonctions.
-export async function getAllUsers(req, res) {
-	// Déclaration de la variable users qui contiendra tous les utilisateurs
-	const users = await find();
-	// On renvoie la réponse au client
-	res.status(200).json({ users });
-}
+// Register
+/* export const signUp = async (req, res) => {
+	const user = await userModel.create({ ...req.body });
+	res.status(201).send(user);
+}; */
+// login
+export const signIn = async (req, res) => {
+	const user = await userModel.find({ _id: req.params.id });
+	res.send(user);
+};
+
+//update
+/* export const updateUser = async (req, res) => {
+	const user = await findByIdAndUpdate(req.params.id, req.body);
+	await user.save();
+	res.send(user);
+}; */
