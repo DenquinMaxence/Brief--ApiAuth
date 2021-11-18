@@ -6,9 +6,44 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="../assets/css/index.css" />
 		<link rel="stylesheet" href="../assets/css/profile.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+			integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
 		<title>Api Authentication | Profil</title>
 	</head>
 	<body>
-		<h1>Profil</h1>
+		<h2>Profil</h2>
+
+		<div class="container">
+			<span class="icon"><i class="fas fa-edit"></i></span>
+			<div class="profile-container">
+				<div class="profile-avatar">
+					<img src="https://dummyimage.com/256x256/000/fff.png" alt="" />
+					<label for="file" class="label-file">Choisir une image</label>
+					<input type="file" class="input-file" id="file" />
+				</div>
+				<div class="profile-info">
+					<h3>Klairyny</h3>
+					<p>denquin.maxence.pro@gmail.com</p>
+					<div class="profile-bio">
+						<h4>Biographie</h4>
+						<p>
+							Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam harum
+							quas accusantium, veritatis non doloremque placeat, doloribus qui
+							corporis et quaerat temporibus ut ad iste. Officia, in. Nobis, quibusdam
+							?
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="button-container">
+				<button type="button">Modifier mon mot de passe</button>
+				<button type="button" class="btn-danger">Supprimer mon compte</button>
+			</div>
+		</div>
 	</body>
 </html>
