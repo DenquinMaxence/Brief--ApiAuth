@@ -1,0 +1,54 @@
+/* The Modal (background) */
+.modal-background {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgba(0, 0, 0, 0.4);
+	padding-top: 50px;
+}
+
+/* Add padding and center-align text to the container */
+.modal-container {
+	margin: 5% auto 15% auto;
+	border-radius: 10px;
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+	position: relative;
+	overflow: hidden;
+	width: 550px;
+	max-width: 100%;
+	background-color: #ffffff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 10px;
+	text-align: center;
+}
+
+/* Modal Content/Box */
+.modal-content {
+	padding: 16px;
+	text-align: center;
+}
+
+.input-group {
+	text-align: left;
+}
+
+input {
+	background-color: #eee;
+	border: none;
+	border-radius: 5px;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
+}
+
+input:focus {
+	outline: 2px solid #3991a5;
+}

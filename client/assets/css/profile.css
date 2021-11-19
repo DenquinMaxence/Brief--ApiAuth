@@ -18,8 +18,8 @@
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 	border-radius: 5%;
-    width: 256px;
-    height: 256px;
+	width: 256px;
+	height: 256px;
 }
 
 .profile-info {
@@ -31,29 +31,14 @@
 }
 
 .icon {
-    position: absolute;
-    right: 16px;
-    top: 16px;
-    cursor: pointer;
+	position: absolute;
+	right: 16px;
+	top: 16px;
+	cursor: pointer;
 }
 
 .fa-edit {
 	color: #3991a5;
-}
-
-.button-container {
-	width: 100%;
-	height: 25%;
-	display: flex;
-	padding: 0.5rem;
-	flex-direction: wrap;
-	justify-content: space-around;
-	align-items: center;
-}
-
-.btn-danger {
-	border: 1px solid #a53939;
-	background-color: #a53939;
 }
 
 .label-file {

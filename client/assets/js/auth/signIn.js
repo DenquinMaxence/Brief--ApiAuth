@@ -27,7 +27,8 @@ const signIn = async (user) => {
 
 	if (response.status === 200) {
 		localStorage.setItem('tokenAuth', await response.text());
-		window.location.href = './';
+		alert('Connexion réussi avec succès, vous allez être redirigé sur votre profil');
+		window.location.href = './pages/profile.html';
 	} else {
 		alert((await response.text()).valueOf());
 	}
