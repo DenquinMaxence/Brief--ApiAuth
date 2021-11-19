@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import express from 'express';
+import session from 'express-session';
 const app = express();
 
 import connectDB from './config/db.js';
@@ -10,6 +11,7 @@ import userRoutes from './routes/userRoutes.js';
 import privateRoutes from './routes/privateRoutes.js';
 
 import './middleware/auth.js';
+import './middleware/googleAuth.js';
 import passport from 'passport';
 
 const appPort = process.env.APP_PORT || 3500;
@@ -33,6 +35,11 @@ app.use(express.json());
 
 app.use(passport.initialize());
 app.use('/private', passport.authenticate('jwt', { session: false }), privateRoutes);
+app.get('/', (req, res) => {
+	res.send('<a href="/auth/google">Authentification avec Google</a>');
+});
+app.get('/auth/google', passport.authenticate('google', { scope: ['email', 'profile'] }));
+
 // Routes
 // On définit les routes de l'application
 app.use('/api/v1/users', userRoutes);

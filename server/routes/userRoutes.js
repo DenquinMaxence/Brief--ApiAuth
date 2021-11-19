@@ -1,5 +1,5 @@
 // On importe la bibliothèque express
-import { Router } from 'express';
+import { application, Router } from 'express';
 import passport from 'passport';
 
 import jwt from 'jsonwebtoken';
