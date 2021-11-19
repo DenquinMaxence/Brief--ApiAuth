@@ -5,7 +5,7 @@ if (isTokenExist) {
 	const checkToken = async () => {
 		const response = await fetch('http://localhost:3500/api/v1/auth/me', {
 			headers: {
-				'X-Authorization': tokenAuth,
+				'xauthorization': tokenAuth,
 			},
 		});
 

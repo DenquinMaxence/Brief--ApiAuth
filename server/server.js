@@ -6,9 +6,10 @@ import express from 'express';
 import session from 'express-session';
 const app = express();
 
+import cors from 'cors';
+
 import connectDB from './config/db.js';
-import userRoutes from './routes/userRoutes.js';
-import privateRoutes from './routes/privateRoutes.js';
+import authRouter from './routes/authRoutes.js';
 
 import './middleware/auth.js';
 import './middleware/googleAuth.js';
@@ -32,14 +33,13 @@ start();
 
 //middlewares
 app.use(express.json());
+app.use(cors());
 
 app.use(passport.initialize());
-app.use('/private', passport.authenticate('jwt', { session: false }), privateRoutes);
 app.get('/', (req, res) => {
-	res.send('<a href="/auth/google">Authentification avec Google</a>');
+	res.send('<a href="/api/v1/auth/google">Authentification avec Google</a>');
 });
-app.get('/auth/google', passport.authenticate('google', { scope: ['email', 'profile'] }));
 
 // Routes
 // On définit les routes de l'application
-app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/auth', authRouter);

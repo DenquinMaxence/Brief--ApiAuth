@@ -24,9 +24,11 @@ const signIn = async (user) => {
 			'Content-Type': 'application/json',
 		},
 	});
-
+	
+	
 	if (response.status === 200) {
-		localStorage.setItem('tokenAuth', await response.text());
+		const res = await response.json();
+		localStorage.setItem('tokenAuth', res.token);
 		alert('Connexion réussi avec succès, vous allez être redirigé sur votre profil');
 		window.location.href = './pages/profile.html';
 	} else {

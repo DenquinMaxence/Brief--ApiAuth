@@ -101,7 +101,7 @@ modalForm.addEventListener('submit', async (event) => {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
-						'X-Authorization': tokenAuth,
+						'xauthorization': tokenAuth,
 					},
 					body: JSON.stringify({
 						oldPassword,
@@ -127,7 +127,7 @@ modalForm.addEventListener('submit', async (event) => {
 		const response = await fetch('http://localhost:3500/api/v1/users', {
 			method: 'DELETE',
 			headers: {
-				'X-Authorization': tokenAuth,
+				'xauthorization': tokenAuth,
 			},
 		});
 

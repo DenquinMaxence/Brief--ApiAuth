@@ -10,7 +10,7 @@ import JWT from 'passport-jwt';
 const { Strategy: JWTStrategy, ExtractJwt } = JWT;
 
 passport.use(
-	'signup',
+	'signUp',
 	new Strategy(
 		{
 			usernameField: 'email',
@@ -28,7 +28,7 @@ passport.use(
 );
 
 passport.use(
-	'login',
+	'signIn',
 	new Strategy(
 		{
 			usernameField: 'email',
@@ -57,11 +57,11 @@ passport.use(
 	new JWTStrategy(
 		{
 			secretOrKey: process.env.JWT_SECRET,
-			jwtFromRequest: ExtractJwt.fromUrlQueryParameter('token'),
+			jwtFromRequest: ExtractJwt.fromHeader('xauthorization'),
 		},
-		async (token, done) => {
+		async (xauthorization, done) => {
 			try {
-				return done(null, token.user);
+				return done(null, xauthorization._id);
 			} catch (error) {
 				return done(error);
 			}
