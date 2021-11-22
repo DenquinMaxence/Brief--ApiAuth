@@ -62,6 +62,7 @@ passport.use(
 		},
 		async (xauthorization, done) => {
 			try {
+				console.log('Testtest');
 				return done(null, xauthorization._id);
 			} catch (error) {
 				return done(error);

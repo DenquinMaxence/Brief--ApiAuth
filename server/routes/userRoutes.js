@@ -11,6 +11,11 @@ router.post('/change-password', passport.authenticate('jwt', { session: false })
 
 router.delete('/', passport.authenticate('jwt', { session: false }), deleteUser);
 
-router.post('/avatar', upload.single('file'), uploadAvatar);
+router.post(
+	'/avatar',
+	upload.single('upload_avatar'),
+	passport.authenticate('jwt', { session: false }),
+	uploadAvatar
+);
 
 export default router;

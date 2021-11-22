@@ -59,6 +59,7 @@ export const deleteUser = async (req, res) => {
 };
 
 export const uploadAvatar = async (req, res) => {
+	console.log(req.file, req.user);
 	if (!ObjectId.isValid(req.user))
 		return res.status(StatusCodes.BAD_REQUEST).send(`Invalid parameter : ${req.user}`);
 	try {

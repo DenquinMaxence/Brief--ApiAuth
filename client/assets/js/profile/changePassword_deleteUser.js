@@ -126,6 +126,8 @@ modalForm.addEventListener('submit', async (event) => {
 			},
 		});
 
+		console.log(response);
+
 		if (response.status === 204) {
 			localStorage.removeItem('tokenAuth');
 			window.location.href = '/client/';

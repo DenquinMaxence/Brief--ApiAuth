@@ -35,7 +35,9 @@ async function profileData() {
 	const profileEmail = document.getElementById('profile-user-email');
 
 	const profileAvatar = document.getElementById('profile-user-avatar');
-	const profileBio = document.getElementById('profile-user-bio');
+	
+	const profileBioDisplay = document.getElementById('profile-user-bio-display');
+	const profileBioText = document.getElementById('profile-user-bio-text');
 
 	const profileCreatedAt = document.getElementById('profile-user-created-at');
 	const profileUpdatedAt = document.getElementById('profile-user-updated-at');
@@ -48,7 +50,7 @@ async function profileData() {
 			? (profileAvatar.src = user.avatar)
 			: (profileAvatar.src = 'https://dummyimage.com/256x256/000/fff.png');
 
-		user.bio ? (profileBio.innerHTML = user.bio) : (profileBio.innerHTML = 'Pas de biographie');
+		user.bio ? (profileBioDisplay.innerHTML = user.bio) : (profileBioDisplay.innerHTML = 'Pas de biographie');
 
 		profileCreatedAt.innerHTML = dateParser(user.createdAt);
 		profileUpdatedAt.innerHTML = dateParser(user.updatedAt);

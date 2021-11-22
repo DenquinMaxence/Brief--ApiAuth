@@ -11,6 +11,7 @@ import cors from 'cors';
 
 import connectDB from './config/db.js';
 import authRouter from './routes/authRoutes.js';
+import userRouter from './routes/userRoutes.js';
 
 import './middleware/auth.js';
 import './middleware/googleAuth.js';
@@ -45,3 +46,4 @@ app.get('/', (req, res) => {
 // Routes
 // On définit les routes de l'application
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/users', userRouter);

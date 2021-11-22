@@ -34,17 +34,33 @@
 						src="https://dummyimage.com/256x256/000/fff.png"
 						alt=""
 					/>
-					<form method="POST" enctype="multipart/form-data">
-						<label for="file" class="label-file">Choisir une image</label>
-						<input type="file" class="input-file" id="file" />
+					<form id="uploadAvatarForm" method="POST" enctype="multipart/form-data">
+						<div>
+							<label for="file" class="label-file">Choisir une image</label>
+							<input
+								type="file"
+								name="upload_avatar"
+								id="file"
+								accept=".jpg, .jpeg, .png"
+								class="input-file"
+							/>
+						</div>
+
+						<button type="submit">Envoyer</button>
 					</form>
 				</div>
 				<div class="profile-info">
-					<h3 id="profile-user-name">Klairyny</h3>
-					<p id="profile-user-email">denquin.maxence.pro@gmail.com</p>
+					<h3 id="profile-user-name">Kadadny</h3>
+					<p id="profile-user-email">adadadce.pro@gmail.com</p>
 					<div class="profile-bio">
 						<h4>Biographie</h4>
-						<p id="profile-user-bio"></p>
+						<textarea
+							id="profile-user-bio-text"
+							cols="50"
+							rows="3"
+							style="display: none"
+						></textarea>
+						<p id="profile-user-bio-display"></p>
 					</div>
 					<p>
 						Compte crée le : <span id="profile-user-created-at">XX/XX/XXXX</span><br />
@@ -64,6 +80,7 @@
 
 		<script src="../assets/js/modal.js"></script>
 		<script src="../assets/js/profile/index.js"></script>
+		<script src="../assets/js/profile/uploadAvatar.js"></script>
 		<script src="../assets/js/profile/changePassword_deleteUser.js"></script>
 		<script src="../assets/js/auth/signOut.js"></script>
 	</body>
