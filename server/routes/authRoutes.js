@@ -6,7 +6,7 @@ import { signUp, signIn, getMe } from '../controllers/authController.js';
 const router = Router();
 
 function isLoggedIn(req, res, next) {
-	req.use ? next() : res.sendStatus(401);
+	req.user ? next() : res.sendStatus(401);
 }
 
 // Register
@@ -18,7 +18,7 @@ router.post('/register', passport.authenticate('signUp', { session: false }), si
 router.post('/login', signIn);
 
 // LOGOUT ROUTER
-router.get('/logout', (req, res) => {
+router.get('/logout', isLoggedIn, (req, res) => {
 	req.logout();
 	res.status(200).send();
 });
