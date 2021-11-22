@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
+import userModel from '../models/userModel.js';
 
 // Register
 export const signUp = async (req, res, next) => {
@@ -30,10 +31,11 @@ export const signIn = (req, res, next) => {
 	})(req, res, next);
 };
 
-export const getMe = (req, res) => {
-	res.json({
-		message: "C'est un message secret.",
-		user: req.user,
-		token: req.headers.xauthorization, //on récupère le token de auth
-	});
+export const getMe = async (req, res) => {
+	try {
+		const user = await userModel.findById(req.user).select('-password -__v');
+		res.status(200).send(user);
+	} catch (error) {
+		res.status(500).json({ error: error.message });
+	}
 };

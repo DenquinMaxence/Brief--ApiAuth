@@ -1,8 +1,3 @@
-const tokenAuth = localStorage.getItem('tokenAuth');
-const isTokenExist = tokenAuth && tokenAuth !== '' && tokenAuth.length > 0;
-
-if (!isTokenExist) window.location.href = '/client/';
-
 const changePasswordButton = document.getElementById('changePasswordButton');
 const deleteAccountButton = document.getElementById('deleteAccountButton');
 
@@ -101,7 +96,7 @@ modalForm.addEventListener('submit', async (event) => {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
-						'xauthorization': tokenAuth,
+						xauthorization: tokenAuth,
 					},
 					body: JSON.stringify({
 						oldPassword,
@@ -127,7 +122,7 @@ modalForm.addEventListener('submit', async (event) => {
 		const response = await fetch('http://localhost:3500/api/v1/users', {
 			method: 'DELETE',
 			headers: {
-				'xauthorization': tokenAuth,
+				xauthorization: tokenAuth,
 			},
 		});
 

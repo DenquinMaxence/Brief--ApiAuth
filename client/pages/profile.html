@@ -23,28 +23,31 @@
 			</form>
 		</div>
 
-		<h2>Profil</h2>
+		<h2>Profil de <span id="profile-user-name"></span></h2>
 
 		<div class="container">
 			<span class="icon"><i class="fas fa-edit"></i></span>
 			<div class="profile-container">
 				<div class="profile-avatar">
-					<img src="https://dummyimage.com/256x256/000/fff.png" alt="" />
+					<img
+						id="profile-user-avatar"
+						src="https://dummyimage.com/256x256/000/fff.png"
+						alt=""
+					/>
 					<label for="file" class="label-file">Choisir une image</label>
 					<input type="file" class="input-file" id="file" />
 				</div>
 				<div class="profile-info">
-					<h3>Klairyny</h3>
-					<p>denquin.maxence.pro@gmail.com</p>
+					<h3 id="profile-user-name">Klairyny</h3>
+					<p id="profile-user-email">denquin.maxence.pro@gmail.com</p>
 					<div class="profile-bio">
 						<h4>Biographie</h4>
-						<p>
-							Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam harum
-							quas accusantium, veritatis non doloremque placeat, doloribus qui
-							corporis et quaerat temporibus ut ad iste. Officia, in. Nobis, quibusdam
-							?
-						</p>
+						<p id="profile-user-bio"></p>
 					</div>
+					<p>
+						Compte crée le : <span id="profile-user-created-at">XX/XX/XXXX</span><br />
+						Dernière mise à jour du compte le : <span id="profile-user-updated-at">XX/XX/XXXX</span>
+					</p>
 				</div>
 			</div>
 			<div class="button-container">
@@ -56,6 +59,7 @@
 		</div>
 
 		<script src="../assets/js/modal.js"></script>
-		<script src="../assets/js/profile.js"></script>
+		<script src="../assets/js/profile/index.js"></script>
+		<script src="../assets/js/profile/changePassword_deleteUser.js"></script>
 	</body>
 </html>
