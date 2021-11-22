@@ -13,7 +13,7 @@ passport.use(
 			callbackURL: 'http://localhost:3500/api/v1/auth/google/callback',
 		},
 		function (accessToken, refreshToken, profile, done) {
-			return done(err, profile);
+			return done(null, profile);
 		}
 	)
 );

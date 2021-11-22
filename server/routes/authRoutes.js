@@ -32,8 +32,8 @@ router.get('/google', passport.authenticate('google', { scope: ['email', 'profil
 router.get(
 	'/google/callback',
 	passport.authenticate('google', {
-		successRedirect: '/login/success',
-		failureRedirect: '/login/failure',
+		successRedirect: '/api/v1/auth/login/success',
+		failureRedirect: '/api/v1/auth/login/failure',
 	})
 );
 router.get('/login/success', isLoggedIn, (req, res) => {
