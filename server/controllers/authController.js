@@ -1,13 +1,11 @@
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
+import { StatusCodes } from 'http-status-codes';
 import userModel from '../models/userModel.js';
 
 // Register
-export const signUp = async (req, res, next) => {
-	res.status(201).json({
-		message: 'Votre identifiant a bien été créé.',
-		user: req.user,
-	});
+export const signUp = (req, res) => {
+	res.status(StatusCodes.CREATED).send({ user: req.user });
 };
 
 // login
@@ -34,8 +32,8 @@ export const signIn = (req, res, next) => {
 export const getMe = async (req, res) => {
 	try {
 		const user = await userModel.findById(req.user).select('-password -__v');
-		res.status(200).send(user);
+		res.status(StatusCodes.OK).send(user);
 	} catch (error) {
-		res.status(500).json({ error: error.message });
+		res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: error.message });
 	}
 };

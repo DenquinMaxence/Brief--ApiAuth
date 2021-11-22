@@ -1,56 +1,55 @@
 import mongoose from 'mongoose';
-const ObjectId = mongoose.Types.ObjectId; // objet permetant de vérifier que l'id passé en paramètre est bien un ID correspondant à mongoose (méthode isValid)
+// Objet permetant de vérifier que l'id passé en paramètre est bien un ID correspondant à mongoose (méthode isValid)
+const ObjectId = mongoose.Types.ObjectId;
+import { StatusCodes } from 'http-status-codes';
 
 export const changePassword = async (req, res) => {
-	if (!ObjectId.isValid(req.user)) return res.status(400).send('Id invalide');
+	if (!ObjectId.isValid(req.user))
+		return res.status(StatusCodes.BAD_REQUEST).send(`Invalid parameter : ${req.user}`);
 
 	const { oldPassword, newPassword } = req.body;
 	try {
 		const user = await userModel.findById(req.user);
+		if (!user) return res.status(StatusCodes.NOT_FOUND).send('Utilsateur introuvable');
 
-		if (!user) {
-			return res.status(404).send('User not found');
-		}
 		const isMatch = await user.isValidPassword(oldPassword);
-		if (!isMatch) {
-			return res.status(400).send('Mot de passe incorrect');
-		}
+		if (!isMatch) return res.status(StatusCodes.BAD_REQUEST).send('Mot de passe incorrect');
+
 		user.password = newPassword;
 		await user.save();
-		res.status(200).send('Mot de passe modifié');
+		res.status(StatusCodes.OK).send('Mot de passe modifié');
 	} catch (error) {
-		res.status(500).json({ error: error.message });
+		res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: error.message });
 	}
 };
 
 export const changeBio = async (req, res) => {
-	if (!ObjectId.isValid(req.user)) return res.status(400).send('Id invalide');
+	if (!ObjectId.isValid(req.user))
+		return res.status(StatusCodes.BAD_REQUEST).send(`Invalid parameter : ${req.user}`);
 
 	const { bio } = req.body;
 	try {
 		const user = await userModel.findById(req.user);
+		if (!user) return res.status(StatusCodes.NOT_FOUND).send('User not found');
 
-		if (!user) {
-			return res.status(404).send('User not found');
-		}
 		user.bio = bio;
 		await user.save();
-		res.status(200).send('Bio modifiée');
+		res.status(StatusCodes.OK).send('Bio modifiée');
 	} catch (error) {
-		res.status(500).json({ error: error.message });
+		res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: error.message });
 	}
 };
 
 export const deleteUser = async (req, res) => {
-	if (!ObjectId.isValid(req.user)) return res.status(400).send('Id invalide');
+	if (!ObjectId.isValid(req.user))
+		return res.status(StatusCodes.BAD_REQUEST).send(`Invalid parameter : ${req.user}`);
 
 	try {
 		const user = await userModel.findByIdAndDelete(req.user);
-		if (!user) {
-			return res.status(404).send('Utilisateur non trouvé');
-		}
-		res.status(204).send();
+		if (!user) return res.status(StatusCodes.NOT_FOUND).send('Utilisateur non trouvé');
+
+		res.status(StatusCodes.NO_CONTENT).send();
 	} catch (error) {
-		res.status(500).json({ error: error.message });
+		res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: error.message });
 	}
 };
