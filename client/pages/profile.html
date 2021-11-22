@@ -26,7 +26,7 @@
 		<h2>Profil de <span id="profile-user-name"></span></h2>
 
 		<div class="container">
-			<span class="icon"><i class="fas fa-edit"></i></span>
+			<span class="icon-top"><i class="fas fa-edit"></i></span>
 			<div class="profile-container">
 				<div class="profile-avatar">
 					<img
@@ -46,7 +46,8 @@
 					</div>
 					<p>
 						Compte crée le : <span id="profile-user-created-at">XX/XX/XXXX</span><br />
-						Dernière mise à jour du compte le : <span id="profile-user-updated-at">XX/XX/XXXX</span>
+						Dernière mise à jour du compte le :
+						<span id="profile-user-updated-at">XX/XX/XXXX</span>
 					</p>
 				</div>
 			</div>
@@ -56,10 +57,12 @@
 					Supprimer mon compte
 				</button>
 			</div>
+			<span class="icon-bottom" id="user-logout"><i class="fas fa-sign-out-alt"></i></span>
 		</div>
 
 		<script src="../assets/js/modal.js"></script>
 		<script src="../assets/js/profile/index.js"></script>
 		<script src="../assets/js/profile/changePassword_deleteUser.js"></script>
+		<script src="../assets/js/auth/signOut.js"></script>
 	</body>
 </html>

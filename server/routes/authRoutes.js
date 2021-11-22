@@ -17,6 +17,12 @@ router.post('/register', passport.authenticate('signUp', { session: false }), si
 // http://localhost:3500/api/v1/auth/login
 router.post('/login', signIn);
 
+// LOGOUT ROUTER
+router.get('/logout', (req, res) => {
+	req.logout();
+	res.status(200).send();
+});
+
 // http://localhost:3500/api/v1/auth/me
 router.get('/me', passport.authenticate('jwt', { session: false }), getMe);
 

@@ -30,14 +30,23 @@
 	align-items: flex-start;
 }
 
-.icon {
+.icon-top,
+.icon-bottom {
 	position: absolute;
 	right: 16px;
-	top: 16px;
 	cursor: pointer;
 }
 
-.fa-edit {
+.icon-top {
+	top: 16px;
+}
+
+.icon-bottom {
+	bottom: 16px;
+}
+
+.fa-edit,
+.fa-sign-out-alt {
 	color: #3991a5;
 }
 
