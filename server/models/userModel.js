@@ -5,6 +5,13 @@ import bcrypt from 'bcrypt';
 // UserSchema représente le squelette du document utilisateur dans la base de données
 const userSchema = new mongoose.Schema(
 	{
+		name: {
+			type: String,
+			required: [true, "Merci de fournir un nom d'utilisateur"],
+			minlength: 3,
+			maxlength: 50,
+			unique: true,
+		},
 		email: {
 			type: String,
 			required: [true, 'Merci de fournir un email'],
