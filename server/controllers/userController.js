@@ -23,6 +23,24 @@ export const changePassword = async (req, res) => {
 	}
 };
 
+export const changeBio = async (req, res) => {
+	if (!ObjectId.isValid(req.user)) return res.status(400).send('Id invalide');
+
+	const { bio } = req.body;
+	try {
+		const user = await userModel.findById(req.user);
+
+		if (!user) {
+			return res.status(404).send('User not found');
+		}
+		user.bio = bio;
+		await user.save();
+		res.status(200).send('Bio modifiée');
+	} catch (error) {
+		res.status(500).json({ error: error.message });
+	}
+};
+
 export const deleteUser = async (req, res) => {
 	if (!ObjectId.isValid(req.user)) return res.status(400).send('Id invalide');
 
