@@ -5,6 +5,7 @@ dotenv.config();
 import express from 'express';
 import session from 'express-session';
 const app = express();
+app.use(session({ secret: 'cats', resave: true, saveUninitialized: true }));
 
 import cors from 'cors';
 
@@ -36,6 +37,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use(passport.initialize());
+app.use(passport.session());
 app.get('/', (req, res) => {
 	res.send('<a href="/api/v1/auth/google">Authentification avec Google</a>');
 });
