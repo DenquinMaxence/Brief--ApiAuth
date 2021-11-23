@@ -80,8 +80,8 @@ const deleteAccountButton = document.getElementById('deleteAccountButton');
 });
 
 const modalForm = document.getElementById('modalForm');
-modalForm.addEventListener('submit', async (event) => {
-	event.preventDefault();
+modalForm.addEventListener('submit', async (e) => {
+	e.preventDefault();
 	const formData = new FormData(modalForm);
 	const oldPassword = formData.has('oldPassword') ? formData.get('oldPassword') : null;
 	const newPassword = formData.has('newPassword') ? formData.get('newPassword') : null;
@@ -125,8 +125,6 @@ modalForm.addEventListener('submit', async (event) => {
 				xauthorization: tokenAuth,
 			},
 		});
-
-		console.log(response);
 
 		if (response.status === 204) {
 			localStorage.removeItem('tokenAuth');

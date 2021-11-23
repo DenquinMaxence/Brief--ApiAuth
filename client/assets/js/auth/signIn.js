@@ -24,14 +24,13 @@ const signIn = async (user) => {
 			'Content-Type': 'application/json',
 		},
 	});
-	
-	
+
 	if (response.status === 200) {
-		const res = await response.json();
-		localStorage.setItem('tokenAuth', res.token);
+		const res = await response.text();
+		localStorage.setItem('tokenAuth', res);
 		alert('Connexion réussi avec succès, vous allez être redirigé sur votre profil');
 		window.location.href = './pages/profile.html';
 	} else {
-		alert((await response.text()).valueOf());
+		alert('Impossible de se connecter à ce compte, vérifier vos informations de connexion...');
 	}
 };

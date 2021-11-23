@@ -31,13 +31,12 @@ const dateParser = (num) => {
 async function profileData() {
 	const user = await getUser();
 
-	const profileName = document.querySelectorAll('#profile-user-name');
+	const profileName = document.querySelectorAll('.profile-user-name');
 	const profileEmail = document.getElementById('profile-user-email');
 
 	const profileAvatar = document.getElementById('profile-user-avatar');
-	
+
 	const profileBioDisplay = document.getElementById('profile-user-bio-display');
-	const profileBioText = document.getElementById('profile-user-bio-text');
 
 	const profileCreatedAt = document.getElementById('profile-user-created-at');
 	const profileUpdatedAt = document.getElementById('profile-user-updated-at');
@@ -46,11 +45,11 @@ async function profileData() {
 		profileName.forEach((item) => (item.innerHTML = user.name));
 		profileEmail.innerHTML = user.email;
 
-		user.avatar
-			? (profileAvatar.src = user.avatar)
-			: (profileAvatar.src = 'https://dummyimage.com/256x256/000/fff.png');
+		user.picture
+			? (profileAvatar.src = `../public/uploads/profile/${user.picture}`)
+			: (profileAvatar.src = '../public/uploads/profile/random-user.png');
 
-		user.bio ? (profileBioDisplay.innerHTML = user.bio) : (profileBioDisplay.innerHTML = 'Pas de biographie');
+		user.bio ? (profileBioDisplay.innerHTML = user.bio) : (profileBioDisplay.innerHTML = 'N/A');
 
 		profileCreatedAt.innerHTML = dateParser(user.createdAt);
 		profileUpdatedAt.innerHTML = dateParser(user.updatedAt);

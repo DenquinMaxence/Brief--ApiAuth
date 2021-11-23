@@ -2,6 +2,8 @@ import jwt from 'jsonwebtoken';
 import passport from 'passport';
 import { StatusCodes } from 'http-status-codes';
 import userModel from '../models/userModel.js';
+import mongoose from 'mongoose';
+const ObjectId = mongoose.Types.ObjectId;
 
 // Register
 export const signUp = (req, res) => {
@@ -21,7 +23,7 @@ export const signIn = (req, res, next) => {
 
 				const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
 
-				res.json({ token });
+				res.send(token);
 			});
 		} catch (error) {
 			return next(error);
@@ -30,10 +32,19 @@ export const signIn = (req, res, next) => {
 };
 
 export const getMe = async (req, res) => {
+	if (!ObjectId.isValid(req.user))
+		return res.status(StatusCodes.BAD_REQUEST).send(`Invalid parameter : ${req.user}`);
+
 	try {
 		const user = await userModel.findById(req.user).select('-password -__v');
+		if (!user) return res.status(StatusCodes.BAD_REQUEST).send('User not found');
 		res.status(StatusCodes.OK).send(user);
 	} catch (error) {
 		res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: error.message });
 	}
+};
+
+export const signOut = (req, res) => {
+	req.logout();
+	res.status(StatusCodes.OK).send();
 };

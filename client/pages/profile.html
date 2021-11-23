@@ -23,35 +23,43 @@
 			</form>
 		</div>
 
-		<h2>Profil de <span id="profile-user-name"></span></h2>
+		<h2>Profil de <span id="user-name-title" class="profile-user-name">John Doe</span></h2>
 
 		<div class="container">
-			<span class="icon-top"><i class="fas fa-edit"></i></span>
+			<span class="icon-top" id="user-update"><i class="fas fa-edit"></i></span>
 			<div class="profile-container">
 				<div class="profile-avatar">
 					<img
 						id="profile-user-avatar"
-						src="https://dummyimage.com/256x256/000/fff.png"
-						alt=""
+						src="../public/uploads/profile/random-user.png"
+						alt="user-pic"
 					/>
 					<form id="uploadAvatarForm" method="POST" enctype="multipart/form-data">
 						<div>
-							<label for="file" class="label-file">Choisir une image</label>
+							<label for="input-file" class="label-file">Choisir une image</label>
 							<input
 								type="file"
 								name="upload_avatar"
-								id="file"
+								id="input-file"
 								accept=".jpg, .jpeg, .png"
 								class="input-file"
 							/>
 						</div>
 
-						<button type="submit">Envoyer</button>
+						<button id="button-submit-file" type="submit" style="display: none">
+							Envoyer
+						</button>
 					</form>
 				</div>
 				<div class="profile-info">
-					<h3 id="profile-user-name">Kadadny</h3>
-					<p id="profile-user-email">adadadce.pro@gmail.com</p>
+					<input
+						type="text"
+						id="profile-user-name-text"
+						placeholder="Insérer un nom d'utilisateur"
+						style="display: none"
+					/>
+					<h3 id="profile-user-name-display" class="profile-user-name">John Doe</h3>
+					<p id="profile-user-email">john.doe@gmail.com</p>
 					<div class="profile-bio">
 						<h4>Biographie</h4>
 						<textarea
@@ -67,6 +75,9 @@
 						Dernière mise à jour du compte le :
 						<span id="profile-user-updated-at">XX/XX/XXXX</span>
 					</p>
+					<button type="button" id="confirm-update" style="display: none">
+						Valider modifications
+					</button>
 				</div>
 			</div>
 			<div class="button-container">
@@ -81,6 +92,7 @@
 		<script src="../assets/js/modal.js"></script>
 		<script src="../assets/js/profile/index.js"></script>
 		<script src="../assets/js/profile/uploadAvatar.js"></script>
+		<script src="../assets/js/profile/updateUser.js"></script>
 		<script src="../assets/js/profile/changePassword_deleteUser.js"></script>
 		<script src="../assets/js/auth/signOut.js"></script>
 	</body>

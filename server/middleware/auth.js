@@ -39,14 +39,14 @@ passport.use(
 			try {
 				const user = await userModel.findOne({ email });
 				if (!user) {
-					return done(null, false, { message: 'Utilisateur non trouvé.' });
+					return done(null, false);
 				}
 
-				const validate = await user.isValidPassword(password);
-				if (!validate) {
-					return done(null, false, { message: 'Erreur de connexion.' });
+				const isMatch = await user.isValidPassword(password);
+				if (!isMatch) {
+					return done(null, false);
 				}
-				return done(null, user, { message: 'Connexion réussie.' });
+				return done(null, user);
 			} catch (error) {
 				return done(error);
 			}
@@ -62,7 +62,6 @@ passport.use(
 		},
 		async (xauthorization, done) => {
 			try {
-				console.log('Testtest');
 				return done(null, xauthorization._id);
 			} catch (error) {
 				return done(error);

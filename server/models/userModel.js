@@ -31,9 +31,9 @@ const userSchema = new mongoose.Schema(
 			type: String,
 			max: 1024,
 		},
-
-		avatar: {
+		picture: {
 			type: String,
+			default: 'random-user.png',
 		},
 	},
 	{
@@ -43,9 +43,8 @@ const userSchema = new mongoose.Schema(
 
 //pre hook
 userSchema.pre('save', async function (next) {
-	//means : avant de save, fais cette fonction
-	const hash = await bcrypt.hash(this.password, Number(process.env.SALT));
-	this.password = hash;
+	const salt = await bcrypt.genSalt(Number(process.env.SALT));
+	this.password = await bcrypt.hash(this.password, salt);
 
 	next();
 });

@@ -1,8 +1,8 @@
 // On importe la bibliothèque express
-import { application, Router } from 'express';
+import { Router } from 'express';
 import session from 'express-session';
 import passport from 'passport';
-import { signUp, signIn, getMe } from '../controllers/authController.js';
+import { signUp, signIn, getMe, signOut } from '../controllers/authController.js';
 const router = Router();
 
 function isLoggedIn(req, res, next) {
@@ -18,10 +18,7 @@ router.post('/register', passport.authenticate('signUp', { session: false }), si
 router.post('/login', signIn);
 
 // LOGOUT ROUTER
-router.get('/logout', isLoggedIn, (req, res) => {
-	req.logout();
-	res.status(200).send();
-});
+router.get('/logout', passport.authenticate('jwt', { session: false }), signOut);
 
 // http://localhost:3500/api/v1/auth/me
 router.get('/me', passport.authenticate('jwt', { session: false }), getMe);
