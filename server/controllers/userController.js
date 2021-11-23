@@ -19,11 +19,14 @@ export const uploadAvatar = async (req, res) => {
 		const user = await userModel.findById(req.user);
 		if (!user) return res.status(StatusCodes.NOT_FOUND).send('User not found');
 
+		await userModel.findByIdAndUpdate(
+			req.user,
+			{ $set: { picture: filename } },
+			{ new: true, upsert: true, setDefaultsOnInsert: true }
+		);
+
 		if (user.picture && user.picture !== 'random-user.png')
 			await promises.unlink(`${__dirname}/../client/public/uploads/profile/${user.picture}`);
-
-		user.picture = filename;
-		await user.save();
 
 		res.status(StatusCodes.OK).send({ filename });
 	} catch (error) {
@@ -40,10 +43,17 @@ export const updateUser = async (req, res) => {
 		const user = await userModel.findById(req.user);
 		if (!user) return res.status(StatusCodes.NOT_FOUND).send('User not found');
 
-		if (name || (typeof name === 'string' && name === '')) user.name = name;
-		if (bio || (typeof bio === 'string' && bio === '')) user.bio = bio;
+		let dataToUpdate = {};
+		if (name || (typeof name === 'string' && name === '')) dataToUpdate.name = name;
+		if (bio || (typeof bio === 'string' && bio === '')) dataToUpdate.bio = bio;
 
-		await user.save();
+		if (Object.keys(dataToUpdate).length > 0)
+			await userModel.findByIdAndUpdate(
+				req.user,
+				{ $set: dataToUpdate },
+				{ new: true, upsert: true, setDefaultsOnInsert: true }
+			);
+
 		res.status(StatusCodes.OK).send(user);
 	} catch (error) {
 		res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: error.message });
@@ -60,7 +70,7 @@ export const changePassword = async (req, res) => {
 		const user = await userModel.findById(req.user);
 		if (!user) return res.status(StatusCodes.NOT_FOUND).send('User not found');
 
-		const isMatch = await user.isValidPassword(oldPassword);
+		const isMatch = await user.matchPassword(oldPassword);
 		if (!isMatch) return res.status(StatusCodes.BAD_REQUEST).send('Old password is incorrect');
 
 		user.password = newPassword;

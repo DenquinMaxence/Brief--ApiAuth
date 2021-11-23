@@ -42,16 +42,13 @@ const userSchema = new mongoose.Schema(
 );
 
 //pre hook
-userSchema.pre('save', async function (next) {
+userSchema.pre('save', async function () {
 	const salt = await bcrypt.genSalt(Number(process.env.SALT));
 	this.password = await bcrypt.hash(this.password, salt);
-
-	next();
 });
 
 //Ajouter une méthode pour vérifier le password
-userSchema.methods.isValidPassword = async function (password) {
-	//methode means : ajouter une méthode (valide password)
+userSchema.methods.matchPassword = async function (password) {
 	return await bcrypt.compare(password, this.password);
 };
 
