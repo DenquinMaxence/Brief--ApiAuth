@@ -14,7 +14,7 @@ import authRouter from './routes/authRoutes.js';
 import userRouter from './routes/userRoutes.js';
 
 import './middleware/auth.js';
-import './middleware/googleAuth.js';
+// import './middleware/googleAuth.js';
 import passport from 'passport';
 
 const appPort = process.env.APP_PORT || 3500;
@@ -39,9 +39,9 @@ app.use(cors());
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.get('/', (req, res) => {
-	res.send('<a href="/api/v1/auth/google">Authentification avec Google</a>');
-});
+// app.get('/', (req, res) => {
+// 	res.send('<a href="/api/v1/auth/google">Authentification avec Google</a>');
+// });
 
 // Routes
 // On définit les routes de l'application
